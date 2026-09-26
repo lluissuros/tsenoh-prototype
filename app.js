@@ -273,12 +273,31 @@
   /* ---------- product sheet ---------- */
   const sheet = $("#sheet"), bagEl = $("#bag");
   const lock = () => document.body.classList.toggle("locked", sheet.classList.contains("open") || bagEl.classList.contains("open"));
+  // Gallery loads in layers: the grid's 600px image (already cached) or a 48px blur shows at once,
+  // the srcset image fades in over it. Pressing a card starts the download before the click lands.
+  const GALLERY_WIDTHS = [600, 900, 1200], GALLERY_SIZES = "(min-width: 820px) 480px, 86vw";
+  const warmed = new Set();
+  function warm(handle) {
+    if (warmed.has(handle)) return; warmed.add(handle);
+    byHandle[handle].images.forEach((u, i) => {
+      const im = new Image();
+      if (i < 2) { im.sizes = GALLERY_SIZES; im.srcset = GALLERY_WIDTHS.map(w => `${img(u, w)} ${w}w`).join(", "); }
+      else im.src = img(u, 48);
+    });
+  }
+  addEventListener("pointerdown", e => { const o = e.target.closest("[data-open]"); if (o) warm(o.dataset.open); }, { passive: true });
+  addEventListener("pointerover", e => { const o = e.target.closest("[data-open]"); if (o && e.pointerType === "mouse") warm(o.dataset.open); }, { passive: true });
+
   function openProduct(handle) {
     const p = byHandle[handle], L = p[lang];
     const facts = L.body.filter(l => l.length < 46), paras = L.body.filter(l => l.length >= 46);
     const inBag = bag.includes(handle);
     $("#sheetBody").innerHTML = `
-      <div class="pgallery" id="pgallery">${p.images.map((u, i) => `<img src="${img(u, 900)}" alt="${name(p)} ${i + 1}" ${i ? 'loading="lazy"' : ""}>`).join("")}</div>
+      <div class="pgallery" id="pgallery">${p.images.map((u, i) => `
+        <div class="pimg ${i ? "" : "sharp"}" style="--lq:url('${i ? img(u, 48) : img(u, 600)}')">
+          <img src="${img(u, 900)}" srcset="${GALLERY_WIDTHS.map(w => `${img(u, w)} ${w}w`).join(", ")}" sizes="${GALLERY_SIZES}"
+            alt="${name(p)} ${i + 1}" decoding="async" ${i > 1 ? 'loading="lazy"' : 'fetchpriority="high"'} onload="this.classList.add('in')">
+        </div>`).join("")}</div>
       <div class="pdots">${p.images.map((_, i) => `<i class="${i ? "" : "on"}"></i>`).join("")}</div>
       <div class="pinfo">
         <h2>${name(p)}</h2>

@@ -102,9 +102,10 @@ body.locked { overflow: hidden; }
 .nav__menu.open span:first-child { transform: translateY(4.25px) rotate(45deg); }
 .nav__menu.open span:last-child { transform: translateY(-4.25px) rotate(-45deg); }
 .nav__right { justify-self: end; display: flex; gap: 6px; align-items: center; }
-.nav__lang, .nav__bag { height: 36px; padding: 0 12px; border-radius: 999px; font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
-.nav__lang { border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); }
-.nav__bag { background: var(--ink); color: var(--paper); }
+.nav__lang, .nav__bag { height: 36px; border-radius: 999px; font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.nav__lang { padding: 0 8px; color: var(--ink-soft); }
+.nav__bag { display: inline-flex; align-items: center; padding: 0 10px 0 9px; background: var(--ink); color: var(--paper); }
+.nav__bag svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; }
 .nav__bag b { display: inline-grid; place-items: center; min-width: 18px; height: 18px; margin-left: 4px; border-radius: 9px; background: var(--bubble); color: var(--ink); font-size: 10px; }
 .nav__bag.bump { animation: bump .6s var(--spring); }
 @keyframes bump { 40% { transform: scale(1.18) rotate(-4deg); } }
@@ -308,8 +309,12 @@ body.locked { overflow: hidden; }
 }
 .pgallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .pgallery::-webkit-scrollbar { display: none; }
-.pgallery img { flex: 0 0 86%; aspect-ratio: 4 / 5; object-fit: cover; scroll-snap-align: start; background: var(--cream); }
-.pgallery img:first-child { border-top-left-radius: 28px; }
+.pimg { position: relative; flex: 0 0 86%; aspect-ratio: 4 / 5; scroll-snap-align: start; overflow: hidden; background: var(--cream); }
+.pimg::before { content: ""; position: absolute; inset: -16px; background: var(--lq) center / cover; filter: blur(14px); }
+.pimg.sharp::before { filter: none; inset: 0; }
+.pimg img { position: relative; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s var(--ease); }
+.pimg img.in { opacity: 1; }
+.pimg:first-child { border-top-left-radius: 28px; }
 .pdots { display: flex; gap: 5px; justify-content: center; padding: 12px 0 0; }
 .pdots i { width: 6px; height: 6px; border-radius: 3px; background: var(--bubble-soft); transition: width .3s, background .3s; }
 .pdots i.on { width: 18px; background: var(--hot); }
