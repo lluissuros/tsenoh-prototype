@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#ffa8cd">
+<title>Tsenoh! — prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.shopify.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+
+<!-- Intro: the moon fills with pink, then the page opens -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro__moon"><span></span></div>
+  <p class="intro__word">Tsenoh!</p>
+</div>
+
+<div class="proto-badge" title="This is a prototype">prototype ✦ v0</div>
+
+<div class="announce" aria-label="Announcements">
+  <div class="announce__track">
+    <span data-i18n="announce1"></span><span>✦</span><span data-i18n="announce2"></span><span>✦</span><span data-i18n="announce3"></span><span>✦</span>
+    <span data-i18n="announce1"></span><span>✦</span><span data-i18n="announce2"></span><span>✦</span><span data-i18n="announce3"></span><span>✦</span>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <button class="nav__menu" id="menuBtn" aria-label="Menu"><span></span><span></span></button>
+  <a href="#top" class="nav__logo">Tsenoh<em>!</em></a>
+  <div class="nav__right">
+    <button class="nav__lang" id="langBtn" aria-label="Change language">ES</button>
+    <button class="nav__bag" id="bagBtn" aria-label="Bag"><span data-i18n="bag"></span> <b id="bagCount">0</b></button>
+  </div>
+</header>
+
+<nav class="menu" id="menu" aria-hidden="true">
+  <a href="#shop" data-i18n="navShop"></a>
+  <a href="#ooak" data-i18n="navOoak"></a>
+  <a href="#sky" data-i18n="navSky"></a>
+  <a href="#fibres" data-i18n="navFibres"></a>
+  <a href="#eva" data-i18n="navEva"></a>
+  <a href="#letters" data-i18n="navLetters"></a>
+  <p class="menu__foot">Cruïlles · Baix Empordà · <a href="https://instagram.com/tsenoh" target="_blank" rel="noopener">@tsenoh</a></p>
+</nav>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas class="hero__sky" id="stars"></canvas>
+    <div class="hero__inner">
+      <p class="eyebrow" data-i18n="heroEyebrow"></p>
+      <h1 class="hero__word" aria-label="Tsenoh!">
+        <span>T</span><span>s</span><span>e</span><span>n</span><span>o</span><span>h</span><span class="bang">!</span>
+      </h1>
+      <p class="hero__tag" data-i18n="heroTag"></p>
+      <div class="hero__arches">
+        <figure class="arch arch--a"><img id="heroImgA" alt=""></figure>
+        <figure class="arch arch--b"><img id="heroImgB" alt=""></figure>
+        <span class="sticker" data-i18n="sticker"></span>
+      </div>
+      <a href="#shop" class="btn btn--ink" data-i18n="heroCta"></a>
+    </div>
+  </section>
+
+  <!-- MOON -->
+  <section class="moon" id="moon">
+    <button class="moon__disc" id="moonDisc" aria-label="Moon"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" class="moon__base"/><path id="moonLit" class="moon__lit"/></svg></button>
+    <div>
+      <p class="eyebrow" data-i18n="moonEyebrow"></p>
+      <p class="moon__phase" id="moonPhase"></p>
+      <p class="moon__line" id="moonLine"></p>
+    </div>
+  </section>
+
+  <div class="ribbon"><div class="ribbon__track" data-i18n-html="ribbon"></div></div>
+
+  <!-- ONE OF A KIND -->
+  <section class="ooak" id="ooak">
+    <div class="ooak__head">
+      <p class="eyebrow eyebrow--pink">"One of a Kind" · 1/1</p>
+      <h2 class="display" data-i18n-html="ooakTitle"></h2>
+      <p class="lede" data-i18n="ooakLede"></p>
+    </div>
+    <div class="ooak__rail" id="ooakRail"></div>
+    <p class="ooak__hint" data-i18n="swipe"></p>
+  </section>
+
+  <!-- CONSTELLATION -->
+  <section class="sky" id="sky">
+    <div class="sky__head">
+      <p class="eyebrow eyebrow--pink" data-i18n="skyEyebrow"></p>
+      <h2 class="display" data-i18n-html="skyTitle"></h2>
+      <p class="lede" data-i18n="skyLede"></p>
+    </div>
+    <div class="sky__map">
+      <svg id="skyMap" viewBox="0 0 400 520" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="sky__card" id="skyCard" hidden></div>
+  </section>
+
+  <!-- SHOP -->
+  <section class="shop" id="shop">
+    <div class="shop__head">
+      <h2 class="display" data-i18n-html="shopTitle"></h2>
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- FIBRES -->
+  <section class="fibres" id="fibres">
+    <p class="eyebrow" data-i18n="fibresEyebrow"></p>
+    <h2 class="display" data-i18n-html="fibresTitle"></h2>
+    <div class="fibres__list">
+      <article class="fibre" data-fibre="linen"><div class="fibre__art"></div><h3 data-i18n="f1t"></h3><p data-i18n="f1p"></p></article>
+      <article class="fibre" data-fibre="wool"><div class="fibre__art"></div><h3 data-i18n="f2t"></h3><p data-i18n="f2p"></p></article>
+      <article class="fibre" data-fibre="vintage"><div class="fibre__art"></div><h3 data-i18n="f3t"></h3><p data-i18n="f3p"></p></article>
+    </div>
+  </section>
+
+  <!-- EVA -->
+  <section class="eva" id="eva">
+    <figure class="eva__img arch"><img id="evaImg" alt=""></figure>
+    <div class="eva__letter">
+      <p class="eyebrow" data-i18n="evaEyebrow"></p>
+      <p class="eva__big" data-i18n="evaBig"></p>
+      <p data-i18n="evaP1"></p>
+      <p data-i18n="evaP2"></p>
+      <p class="eva__sign">Love &amp; Light, Eva</p>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="letters" id="letters">
+    <div class="letters__stamp" aria-hidden="true">✦<br>Cruïlles<br>✦</div>
+    <p class="eyebrow" data-i18n="lettersEyebrow"></p>
+    <h2 class="display" data-i18n-html="lettersTitle"></h2>
+    <p class="lede" data-i18n="lettersLede"></p>
+    <form class="letters__form" id="lettersForm">
+      <input type="email" required id="lettersEmail" autocomplete="email">
+      <button class="btn btn--ink" type="submit" data-i18n="lettersBtn"></button>
+    </form>
+    <p class="letters__small" data-i18n="lettersSmall"></p>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__word">Tsenoh!</div>
+  <div class="foot__cols">
+    <p data-i18n="footMade"></p>
+    <p><a href="https://instagram.com/tsenoh" target="_blank" rel="noopener">Instagram @tsenoh</a><br><a href="https://tsenoh.com" target="_blank" rel="noopener">tsenoh.com</a></p>
+  </div>
+  <p class="foot__proto" data-i18n="footProto"></p>
+</footer>
+
+<!-- Product sheet -->
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheet__scrim" data-close></div>
+  <article class="sheet__panel" role="dialog" aria-modal="true">
+    <button class="sheet__close" data-close aria-label="Close">×</button>
+    <div class="sheet__body" id="sheetBody"></div>
+  </article>
+</div>
+
+<!-- Bag -->
+<div class="bag" id="bag" aria-hidden="true">
+  <div class="sheet__scrim" data-close></div>
+  <aside class="bag__panel">
+    <header class="bag__head"><h3 data-i18n="bagTitle"></h3><button class="sheet__close" data-close aria-label="Close">×</button></header>
+    <div class="bag__ship" id="bagShip"></div>
+    <div class="bag__items" id="bagItems"></div>
+    <footer class="bag__foot">
+      <div class="bag__total"><span data-i18n="subtotal"></span><b id="bagTotal"></b></div>
+      <a class="btn btn--pink btn--full" id="checkout" href="#" target="_blank" rel="noopener" data-i18n="checkout"></a>
+      <p class="bag__note" data-i18n="checkoutNote"></p>
+    </footer>
+  </aside>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="cursor" id="cursor" aria-hidden="true">✦</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="wind"><feTurbulence id="windNoise" type="fractalNoise" baseFrequency="0.008 0.02" numOctaves="2" seed="3"/><feDisplacementMap id="windMap" in="SourceGraphic" scale="0"/></filter>
+</svg>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="data.js?v=3"></script>
+<script src="copy.js?v=3"></script>
+<script src="app.js?v=3"></script>
+</body>
+</html>
