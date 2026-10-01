@@ -140,7 +140,7 @@
     const list = P.filter(p => p.ooak).sort((a, b) => b.available - a.available);
     $("#ooakRail").innerHTML = list.map((p, i) => `
       <button class="ooak-card ${p.available ? "" : "sold"}" data-open="${p.handle}">
-        <figure class="ooak-card__photo"><div style="height:100%"><img loading="lazy" src="${img(p.images[0], 700)}" alt="${name(p)}"></div><span class="ooak-card__n">${p.available ? "1/1" : t("soldOut")}</span></figure>
+        <figure class="ooak-card__photo"><div style="height:100%"><img loading="lazy" src="${img(p.images[0], 700)}" alt="${name(p)}"></div>${!p.available ? `<span class="ooak-card__n">${t("soldOut")}</span>` : ""}</figure>
         <h3>${name(p)}</h3><p>${eur(p.price)} · Nº ${String(i + 1).padStart(2, "0")}</p>
       </button>`).join("");
   }
@@ -225,7 +225,7 @@
     $("#grid").innerHTML = list.map(p => `
       <div class="card ${p.available ? "" : "sold"}" data-handle="${p.handle}">
         <div class="card__media"><button class="card__img" data-open="${p.handle}" aria-label="${name(p)}">
-          ${p.ooak ? `<span class="card__badge card__badge--ooak">1/1</span>` : !p.available ? `<span class="card__badge">${t("soldOut")}</span>` : ""}
+          ${!p.available ? `<span class="card__badge">${t("soldOut")}</span>` : ""}
           <img loading="lazy" src="${img(p.images[0], 600)}" alt="${name(p)}">
           ${p.images[1] ? `<img loading="lazy" src="${img(p.images[1], 600)}" alt="">` : ""}
         </button>

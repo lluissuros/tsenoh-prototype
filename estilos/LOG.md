@@ -5,6 +5,16 @@ Al empezar una sesión nueva sobre la web, lee este archivo y `README.md` primer
 
 ---
 
+## 2026-10-01 — Proto 3: simplificar etiquetas de tienda
+
+- Eva autoriza aplicar sus cuatro cambios: luna fotográfica, mármol lila en cartel y fibras, mármol rosa en cabecera/franja clara bajo cinta inclinada, y eliminar etiquetas 1/1 y círculos de añadir.
+- Aplicado: se retiran los indicadores 1/1 de tienda y carrusel de piezas únicas. Se conservan los estados de agotado. El botón + sigue funcionando, negro y sin círculo de fondo, con área táctil de 44px y foco de teclado.
+- Bloqueados los cambios de imágenes: las imágenes pegadas en el chat se ven, pero no hay archivos/IDs descargables accesibles con las herramientas de esta sesión. El repositorio solo contiene mármoles provisionales generados. Se solicitan los tres originales como archivos o ZIP; no se sustituyen por imágenes distintas.
+- Se permanece en esta conversación; no hace falta iniciar otra tarea.
+- Validación: sintaxis JS y renderizado de catálogo en ES/EN; sin navegador visual disponible.
+
+---
+
 ## 2026-10-01 — Proto 3: fusión solicitada por Eva
 
 - Eva descarta las láminas generadas y la exploración de grano, filtros vintage y texturas. Se vuelve al código y los recursos reales de Proto 1 y Proto 2.
