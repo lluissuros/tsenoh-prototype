@@ -5,6 +5,15 @@ Al empezar una sesión nueva sobre la web, lee este archivo y `README.md` primer
 
 ---
 
+## 2026-10-01 — Acceso de Eva al repo
+
+- Lluis invitó a Eva (`evavianamoreno`) como colaboradora con permiso `write`. La invitación caduca el 2026-10-08.
+- `main` no tiene protecciones. Un push o una PR fusionada en `main` publica la web en GitHub Pages en 1–2 minutos.
+- Eva quiere hacer cambios desde el móvil con un agente (Codex u otro). Codex en la nube suele abrir una PR; Eva la fusiona desde la app de GitHub.
+- Pendiente: comprobar que el conector de GitHub de Codex ve este repo (el repo es de Lluis, no de Eva).
+
+---
+
 ## 2026-10-01 — v2: primera versión con el estilo de Eva
 
 Sesión con Lluis y Eva (la propietaria de la marca). Eva explicó su estilo a partir de las imágenes de `referencias/`.
