@@ -5,6 +5,10 @@ Esta carpeta guarda el estilo de la marca: las referencias de Eva y el registro 
 - `referencias/` — imágenes que muestran el estilo que le gusta a Eva. El nombre de cada archivo dice qué es.
 - `LOG.md` — el registro de las conversaciones sobre estilo. Las decisiones importantes quedan aquí entre sesiones.
 
+## Estado actual y próxima sesión
+
+Leer [CONTINUAR-PROTO3.md](CONTINUAR-PROTO3.md) antes de trabajar: contiene las decisiones vigentes, tres versiones y cambios pendientes. Las referencias de abajo son históricas; naranja, azul marino y Permanent Marker ya están descartados. Los marmolados originales y la luna real compartidos en el chat todavía NO son archivos en este repositorio.
+
 ## Cómo añadir material (para Eva)
 
 1. **Pon las imágenes en `referencias/`** con un nombre que diga qué es: `cartel-open-studio.jpg`, `textura-lino-crudo.jpg`. Sin espacios ni acentos.

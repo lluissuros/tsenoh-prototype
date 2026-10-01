@@ -5,6 +5,17 @@ Al empezar una sesión nueva sobre la web, lee este archivo y `README.md` primer
 
 ---
 
+## 2026-10-01 — Cierre de sesión y relevo
+
+- Eva pide guardar toda la información para continuar mañana sobre Proto 3. Se crea estilos/CONTINUAR-PROTO3.md con versiones/enlaces, decisiones vigentes, assets existentes, descripción de adjuntos no disponibles, cambios aplicados, tres cambios pendientes y validación realizada.
+- Se actualizan AGENTS.md y README para que el siguiente agente lea el relevo primero.
+- Corrección respecto al mensaje anterior: Eva vio un aviso de la interfaz que pedía nueva tarea con entorno de archivos. No está confirmado que pueda adjuntar en esta conversación; disponer del conector GitHub no garantiza acceso a adjuntos. El siguiente agente debe comprobar las capacidades del nuevo entorno.
+- Las imágenes pegadas NO se han archivado como ficheros: solo se conserva su descripción y uso autorizado. No afirmar que están guardadas.
+- Proto 1 y Proto 2 se conservan. Proto 3 es la base aprobada y recibe todos los cambios futuros.
+- Este commit solo documenta; no modifica la web.
+
+---
+
 ## 2026-10-01 — Proto 3: simplificar etiquetas de tienda
 
 - Eva autoriza aplicar sus cuatro cambios: luna fotográfica, mármol lila en cartel y fibras, mármol rosa en cabecera/franja clara bajo cinta inclinada, y eliminar etiquetas 1/1 y círculos de añadir.
