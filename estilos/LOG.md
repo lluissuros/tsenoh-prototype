@@ -5,6 +5,22 @@ Al empezar una sesión nueva sobre la web, lee este archivo y `README.md` primer
 
 ---
 
+## 2026-10-01 — Proto 3: fusión solicitada por Eva
+
+- Eva descarta las láminas generadas y la exploración de grano, filtros vintage y texturas. Se vuelve al código y los recursos reales de Proto 1 y Proto 2.
+- Nueva versión independiente en /v3/; / conserva Proto 2 y /v1/ permanece intacta.
+- Logo original, portada de ovejas, pinceladas flotantes e intro rosa del Proto 2. La estrella de intro se sustituye por una luna pequeña que se llena.
+- DIN para textos y controles; Bodoni Moda del Proto 1 para títulos principales. Sin Permanent Marker.
+- Marcos alternos de arco y rectángulo redondeado, estrellas gráficas del mapa del Proto 1, fotos agotadas en gris y desenfoque al pasar el cursor en ordenador.
+- Piezas únicas inmediatamente después de la fase lunar. Se conservan recomendación lunar, bandas móviles, círculo de texto, fibras, newsletter y estrellas negras junto a la foto existente.
+- Sin naranja ni azul marino. Negro, rosa y lavanda; controles y precios en rosa. Sin mármol generado mientras Eva revisa la fusión.
+- Solo fotos existentes, sin fotos inventadas. Luna final recolocada.
+- Pendiente: originales utilizables de luna real y mármoles compartidos en el chat, foto de Eva e iconos de fibras definitivos; aclarar signo zodiacal/constelación antes de añadir ese dato.
+- Luis autorizó commits directos a main sin PR; escritura confirmada.
+- Validación: sintaxis JS, recursos relativos, IDs, traducciones e inicialización simulada en ES/EN con catálogo completo. No hay navegador de pruebas disponible.
+
+---
+
 ## 2026-10-01 — Acceso de Eva al repo
 
 - Lluis invitó a Eva (`evavianamoreno`) como colaboradora con permiso `write`. La invitación caduca el 2026-10-08.
