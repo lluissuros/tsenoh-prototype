@@ -4,25 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#1e2547">
-<title>Tsenoh! — prototype v2</title>
+<meta name="theme-color" content="#ffa8cd">
+<title>Tsenoh! — prototype</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.shopify.com">
-<link rel="preload" href="fonts/d-din-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/ovejas-1200.jpg" as="image" imagesrcset="assets/ovejas-1200.jpg 1200w, assets/ovejas-2400.jpg 2400w" imagesizes="100vw">
-<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=5">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
-<!-- Intro: Eva's signature writes itself, then the page opens -->
+<!-- Intro: the moon fills with pink, then the page opens -->
 <div class="intro" id="intro" aria-hidden="true">
-  <i class="logo intro__logo"></i>
-  <i class="brush brush--star-small intro__star"></i>
+  <div class="intro__moon"><span></span></div>
+  <p class="intro__word">Tsenoh!</p>
 </div>
 
-<a class="proto-badge" href="v1/" title="See the first version">prototype ✦ v2 · <u>v1</u></a>
+<a class="proto-badge" href="../" title="See the new version" style="text-decoration:none">prototype ✦ v1 · <u>v2</u></a>
 
 <div class="announce" aria-label="Announcements">
   <div class="announce__track">
@@ -33,7 +31,7 @@
 
 <header class="nav" id="nav">
   <button class="nav__menu" id="menuBtn" aria-label="Menu"><span></span><span></span></button>
-  <a href="#top" class="nav__logo" aria-label="Tsenoh!"><i class="logo"></i></a>
+  <a href="#top" class="nav__logo">Tsenoh<em>!</em></a>
   <div class="nav__right">
     <button class="nav__lang" id="langBtn" aria-label="Change language">ES</button>
     <button class="nav__bag" id="bagBtn" aria-label="Bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><b id="bagCount">0</b></button>
@@ -47,25 +45,27 @@
   <a href="#fibres" data-i18n="navFibres"></a>
   <a href="#eva" data-i18n="navEva"></a>
   <a href="#letters" data-i18n="navLetters"></a>
-  <i class="brush brush--moon menu__moon" aria-hidden="true"></i>
   <p class="menu__foot">Cruïlles · Baix Empordà · <a href="https://instagram.com/tsenoh" target="_blank" rel="noopener">@tsenoh</a></p>
 </nav>
 
 <main id="top">
 
-  <!-- HERO: the sheep from tsenoh.com, Eva's signature over the night sky -->
+  <!-- HERO -->
   <section class="hero">
-    <img class="hero__photo" src="assets/ovejas-1200.jpg" srcset="assets/ovejas-1200.jpg 1200w, assets/ovejas-2400.jpg 2400w" sizes="100vw" alt="" fetchpriority="high">
-    <i class="brush brush--moon hero__b hero__b--moon" aria-hidden="true"></i>
-    <i class="brush brush--star-big hero__b hero__b--star1" aria-hidden="true"></i>
-    <i class="brush brush--star-small hero__b hero__b--star2" aria-hidden="true"></i>
-    <i class="brush brush--star-tiny hero__b hero__b--star3" aria-hidden="true"></i>
-    <p class="hero__side" data-i18n="heroEyebrow"></p>
-    <div class="hero__mark">
-      <h1 class="hero__logo"><i class="logo"></i><span class="sr">Tsenoh!</span></h1>
-      <p class="hero__goods" data-i18n="heroGoods"></p>
+    <canvas class="hero__sky" id="stars"></canvas>
+    <div class="hero__inner">
+      <p class="eyebrow" data-i18n="heroEyebrow"></p>
+      <h1 class="hero__word" aria-label="Tsenoh!">
+        <span>T</span><span>s</span><span>e</span><span>n</span><span>o</span><span>h</span><span class="bang">!</span>
+      </h1>
+      <p class="hero__tag" data-i18n="heroTag"></p>
+      <div class="hero__arches">
+        <figure class="arch arch--a"><img id="heroImgA" alt=""></figure>
+        <figure class="arch arch--b"><img id="heroImgB" alt=""></figure>
+        <span class="sticker" data-i18n="sticker"></span>
+      </div>
+      <a href="#shop" class="btn btn--ink" data-i18n="heroCta"></a>
     </div>
-    <a href="#shop" class="btn btn--paper hero__cta" data-i18n="heroCta"></a>
   </section>
 
   <!-- MOON -->
@@ -78,43 +78,23 @@
     </div>
   </section>
 
-  <!-- COLLAGE: built like Eva's "Celebrate Autumn" poster -->
-  <section class="poster">
-    <p class="poster__side" data-i18n="announce3"></p>
-    <h2 class="poster__title" data-i18n-html="heroTitle"></h2>
-    <div class="poster__board">
-      <div class="poster__marble torn" data-seed="11"></div>
-      <figure class="poster__round">
-        <img id="heroImgC" alt="">
-        <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ring" d="M100 100 m-88 0 a88 88 0 1 1 176 0 a88 88 0 1 1 -176 0"/></defs><text><textPath href="#ring" id="ringText"></textPath></text></svg>
-      </figure>
-      <figure class="cut cut--a"><img class="torn" data-seed="3" id="heroImgA" alt=""></figure>
-      <figure class="cut cut--b"><img class="torn" data-seed="7" id="heroImgB" alt=""></figure>
-      <svg class="spark-g poster__spark1" aria-hidden="true"><use href="#spark"/></svg>
-      <svg class="spark-g poster__spark2" aria-hidden="true"><use href="#spark"/></svg>
-      <i class="brush brush--star-ink poster__ink" aria-hidden="true"></i>
-      <p class="hand poster__note" data-i18n="sticker"></p>
-    </div>
-    <a href="#shop" class="btn btn--blue" data-i18n="heroCta2"></a>
-  </section>
-
   <div class="ribbon"><div class="ribbon__track" data-i18n-html="ribbon"></div></div>
 
   <!-- ONE OF A KIND -->
   <section class="ooak" id="ooak">
     <div class="ooak__head">
-      <p class="eyebrow">"One of a Kind" · 1/1</p>
+      <p class="eyebrow eyebrow--pink">"One of a Kind" · 1/1</p>
       <h2 class="display" data-i18n-html="ooakTitle"></h2>
       <p class="lede" data-i18n="ooakLede"></p>
     </div>
     <div class="ooak__rail" id="ooakRail"></div>
-    <p class="ooak__hint hand" data-i18n="swipe"></p>
+    <p class="ooak__hint" data-i18n="swipe"></p>
   </section>
 
   <!-- CONSTELLATION -->
   <section class="sky" id="sky">
     <div class="sky__head">
-      <p class="eyebrow" data-i18n="skyEyebrow"></p>
+      <p class="eyebrow eyebrow--pink" data-i18n="skyEyebrow"></p>
       <h2 class="display" data-i18n-html="skyTitle"></h2>
       <p class="lede" data-i18n="skyLede"></p>
     </div>
@@ -138,37 +118,33 @@
     <p class="eyebrow" data-i18n="fibresEyebrow"></p>
     <h2 class="display" data-i18n-html="fibresTitle"></h2>
     <div class="fibres__list">
-      <article class="fibre torn" data-seed="21" data-fibre="linen"><div class="fibre__art"></div><h3 data-i18n="f1t"></h3><p data-i18n="f1p"></p></article>
-      <article class="fibre torn" data-seed="22" data-fibre="wool"><div class="fibre__art"></div><h3 data-i18n="f2t"></h3><p data-i18n="f2p"></p></article>
-      <article class="fibre torn" data-seed="23" data-fibre="vintage"><div class="fibre__art"></div><h3 data-i18n="f3t"></h3><p data-i18n="f3p"></p></article>
+      <article class="fibre" data-fibre="linen"><div class="fibre__art"></div><h3 data-i18n="f1t"></h3><p data-i18n="f1p"></p></article>
+      <article class="fibre" data-fibre="wool"><div class="fibre__art"></div><h3 data-i18n="f2t"></h3><p data-i18n="f2p"></p></article>
+      <article class="fibre" data-fibre="vintage"><div class="fibre__art"></div><h3 data-i18n="f3t"></h3><p data-i18n="f3p"></p></article>
     </div>
   </section>
 
   <!-- EVA -->
   <section class="eva" id="eva">
-    <figure class="eva__img">
-      <div class="eva__photo torn" data-seed="31"><img id="evaImg" alt=""></div>
-      <i class="brush brush--star-ink eva__star" aria-hidden="true"></i>
-      <i class="brush brush--star-ink-small eva__star2" aria-hidden="true"></i>
-    </figure>
+    <figure class="eva__img arch"><img id="evaImg" alt=""></figure>
     <div class="eva__letter">
       <p class="eyebrow" data-i18n="evaEyebrow"></p>
       <p class="eva__big" data-i18n="evaBig"></p>
       <p data-i18n="evaP1"></p>
       <p data-i18n="evaP2"></p>
-      <p class="eva__sign hand">Love &amp; Light, Eva</p>
+      <p class="eva__sign">Love &amp; Light, Eva</p>
     </div>
   </section>
 
   <!-- NEWSLETTER -->
   <section class="letters" id="letters">
-    <i class="brush brush--moon-marker letters__moon" aria-hidden="true"></i>
+    <div class="letters__stamp" aria-hidden="true">✦<br>Cruïlles<br>✦</div>
     <p class="eyebrow" data-i18n="lettersEyebrow"></p>
     <h2 class="display" data-i18n-html="lettersTitle"></h2>
     <p class="lede" data-i18n="lettersLede"></p>
     <form class="letters__form" id="lettersForm">
       <input type="email" required id="lettersEmail" autocomplete="email">
-      <button class="btn btn--blue" type="submit" data-i18n="lettersBtn"></button>
+      <button class="btn btn--ink" type="submit" data-i18n="lettersBtn"></button>
     </form>
     <p class="letters__small" data-i18n="lettersSmall"></p>
   </section>
@@ -176,7 +152,7 @@
 </main>
 
 <footer class="foot">
-  <div class="foot__word"><i class="logo"></i><i class="brush brush--moon foot__moon" aria-hidden="true"></i></div>
+  <div class="foot__word">Tsenoh!</div>
   <div class="foot__cols">
     <p data-i18n="footMade"></p>
     <p><a href="https://instagram.com/tsenoh" target="_blank" rel="noopener">Instagram @tsenoh</a><br><a href="https://tsenoh.com" target="_blank" rel="noopener">tsenoh.com</a></p>
@@ -202,7 +178,7 @@
     <div class="bag__items" id="bagItems"></div>
     <footer class="bag__foot">
       <div class="bag__total"><span data-i18n="subtotal"></span><b id="bagTotal"></b></div>
-      <a class="btn btn--blue btn--full" id="checkout" href="#" target="_blank" rel="noopener" data-i18n="checkout"></a>
+      <a class="btn btn--pink btn--full" id="checkout" href="#" target="_blank" rel="noopener" data-i18n="checkout"></a>
       <p class="bag__note" data-i18n="checkoutNote"></p>
     </footer>
   </aside>
@@ -212,15 +188,13 @@
 <div class="cursor" id="cursor" aria-hidden="true">✦</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <!-- The small graphic star from the posters -->
-  <symbol id="spark" viewBox="-50 -50 100 100"><path d="M0.0 -50.0 L0.6 -3.1 L10.7 -25.9 L1.8 -2.7 L35.4 -35.4 L2.7 -1.8 L25.9 -10.7 L3.1 -0.6 L50.0 0.0 L3.1 0.6 L25.9 10.7 L2.7 1.8 L35.4 35.4 L1.8 2.7 L10.7 25.9 L0.6 3.1 L0.0 50.0 L-0.6 3.1 L-10.7 25.9 L-1.8 2.7 L-35.4 35.4 L-2.7 1.8 L-25.9 10.7 L-3.1 0.6 L-50.0 0.0 L-3.1 -0.6 L-25.9 -10.7 L-2.7 -1.8 L-35.4 -35.4 L-1.8 -2.7 L-10.7 -25.9 L-0.6 -3.1Z"/></symbol>
   <filter id="wind"><feTurbulence id="windNoise" type="fractalNoise" baseFrequency="0.008 0.02" numOctaves="2" seed="3"/><feDisplacementMap id="windMap" in="SourceGraphic" scale="0"/></filter>
 </svg>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="data.js?v=5"></script>
-<script src="copy.js?v=5"></script>
-<script src="app.js?v=5"></script>
+<script src="data.js?v=4"></script>
+<script src="copy.js?v=4"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>

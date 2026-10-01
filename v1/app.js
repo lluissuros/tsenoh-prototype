@@ -39,36 +39,50 @@
     intro.classList.add("gone");
     setTimeout(() => intro.remove(), 950);
     if (hasGsap) {
-      gsap.from(".hero__photo", { scale: 1.12, duration: 2.4, ease: "expo.out" });
-      gsap.fromTo(".hero__logo", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.4, ease: "power2.inOut", delay: .35 });
-      gsap.from(".hero__goods, .hero__cta, .hero__side", { y: 24, opacity: 0, duration: 1, stagger: .1, ease: "expo.out", delay: 1.1 });
-      gsap.from(".hero__b", { scale: 0, rotate: -40, opacity: 0, duration: 1.1, stagger: .12, ease: "back.out(2)", delay: .7 });
-      $$(".hero__b").forEach((b, i) => gsap.to(b, { y: i % 2 ? 10 : -12, rotate: `+=${i % 2 ? 6 : -6}`, duration: 3 + i, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 2 }));
+      gsap.from(".hero__word span", { yPercent: 110, rotate: 8, opacity: 0, duration: 1.1, stagger: .06, ease: "expo.out", delay: .25 });
+      gsap.from(".hero__tag, .hero .eyebrow, .hero .btn", { y: 24, opacity: 0, duration: 1, stagger: .1, ease: "expo.out", delay: .6 });
+      gsap.from(".hero__arches .arch", { y: 80, opacity: 0, rotate: i => (i ? 6 : -6), duration: 1.4, stagger: .15, ease: "expo.out", delay: .5 });
+      gsap.to(".hero__word .bang", { rotate: 12, duration: .9, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 1.8 });
     }
   }
-  Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1800))]).then(() => setTimeout(openIntro, 1300));
+  Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1800))]).then(() => setTimeout(openIntro, 700));
 
   /* ---------- hero ---------- */
   $("#heroImgA").src = img(byHandle["vestido-outsider-picnic"].images[0], 900);
   $("#heroImgB").src = img(byHandle["jersey-aries-crudo"].images[1], 700);
-  $("#heroImgC").src = img(byHandle["minerva-scarf-rose"].images[0], 800);
   $("#evaImg").src = img(byHandle["havanna-yara"].images[0], 900);
 
-  /* ---------- torn paper ---------- */
-  // Jagged clip-path for collage cut-outs. Seeded, so each piece keeps its own edge.
-  function torn(el) {
-    let seed = (+el.dataset.seed || 1) * 7919;
-    const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
-    const n = 24, j = 6, at = i => (i / n * 100).toFixed(1) + "%", cut = () => (rnd() * j).toFixed(1) + "px";
-    const pts = [];
-    for (let i = 0; i <= n; i++) pts.push(`${at(i)} ${cut()}`);
-    for (let i = 0; i <= n; i++) pts.push(`calc(100% - ${cut()}) ${at(i)}`);
-    for (let i = n; i >= 0; i--) pts.push(`${at(i)} calc(100% - ${cut()})`);
-    for (let i = n; i >= 0; i--) pts.push(`${cut()} ${at(i)}`);
-    el.style.setProperty("--torn", `polygon(${pts.join(",")})`);
+  function starfield() {
+    const c = $("#stars"), ctx = c.getContext("2d");
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    let w, h, stars = [], mx = 0, my = 0;
+    const resize = () => {
+      w = c.offsetWidth; h = c.offsetHeight; c.width = w * dpr; c.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      stars = Array.from({ length: Math.round(w * h / 9000) }, () => ({
+        x: Math.random() * w, y: Math.random() * h, r: 1.5 + Math.random() * 4.5,
+        p: Math.random() * 6.28, s: .6 + Math.random() * 1.6, d: .2 + Math.random(), pink: Math.random() > .35,
+      }));
+    };
+    const star = (x, y, r) => {
+      ctx.beginPath(); ctx.moveTo(x, y - r);
+      ctx.quadraticCurveTo(x, y, x + r, y); ctx.quadraticCurveTo(x, y, x, y + r);
+      ctx.quadraticCurveTo(x, y, x - r, y); ctx.quadraticCurveTo(x, y, x, y - r); ctx.fill();
+    };
+    addEventListener("pointermove", e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; });
+    addEventListener("resize", resize); resize();
+    const frame = time => {
+      ctx.clearRect(0, 0, w, h);
+      const sy = scrollY;
+      if (sy < h * 1.2) for (const s of stars) {
+        const a = .35 + .65 * Math.abs(Math.sin(time / 1000 * s.s + s.p));
+        ctx.globalAlpha = a; ctx.fillStyle = s.pink ? "#ff4f9a" : "#141013";
+        star(s.x + mx * 30 * s.d, (s.y - sy * .25 * s.d + h) % h + my * 30 * s.d, s.r * (s.pink ? 1 : .6));
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
   }
-  const tearAll = (root = document) => $$(".torn", root).forEach(torn);
-  tearAll();
+  starfield();
 
   /* ---------- moon ---------- */
   function moonState(date = new Date()) {
@@ -88,7 +102,6 @@
     $("#moonLit").setAttribute("d", moonPath(m.phase));
     $("#moonPhase").textContent = `${t("moonNames")[m.index]} · ${Math.round(m.lit * 100)}% ${t("lit")}`;
     $("#moonLine").textContent = t("moonLines")[m.index];
-    $("#ringText").textContent = `${t("moonEyebrow")} ✦ ${t("moonNames")[m.index]} ${Math.round(m.lit * 100)}% ✦ Cruïlles · Baix Empordà ✦ `;
   }
 
   let moonTaps = [];
@@ -120,7 +133,7 @@
       const d = document.createElement("span");
       d.className = "drop"; d.textContent = glyphs[i % glyphs.length];
       d.style.left = Math.random() * 100 + "vw";
-      d.style.color = ["#f26b3a", "#3a2bd8", "#ec1a92", "#b3a2f1"][i % 4];
+      d.style.color = ["#ff4f9a", "#ffa8cd", "#f7aeb8", "#141013"][i % 4];
       d.style.fontSize = 14 + Math.random() * 26 + "px";
       document.body.appendChild(d);
       d.animate([{ transform: "translateY(0) rotate(0)" }, { transform: `translateY(${innerHeight + 80}px) rotate(${Math.random() * 720 - 360}deg)` }],
@@ -156,10 +169,9 @@
     const list = P.filter(p => p.ooak).sort((a, b) => b.available - a.available);
     $("#ooakRail").innerHTML = list.map((p, i) => `
       <button class="ooak-card ${p.available ? "" : "sold"}" data-open="${p.handle}">
-        <figure class="ooak-card__photo"><i class="ooak-card__tape"></i><div class="torn" data-seed="${i + 40}" style="height:100%"><img loading="lazy" src="${img(p.images[0], 700)}" alt="${name(p)}"></div><span class="ooak-card__n">${p.available ? "1/1" : t("soldOut")}</span></figure>
+        <figure class="arch"><img loading="lazy" src="${img(p.images[0], 700)}" alt="${name(p)}"><span class="ooak-card__n">${p.available ? "1/1" : t("soldOut")}</span></figure>
         <h3>${name(p)}</h3><p>${eur(p.price)} · Nº ${String(i + 1).padStart(2, "0")}</p>
       </button>`).join("");
-    tearAll($("#ooakRail"));
   }
 
   // Fabric-in-the-wind: SVG displacement on hover (fine pointers only).
@@ -202,7 +214,7 @@
       const right = s.x < 250;
       return `<g class="sky-star" data-star="${s.key}" tabindex="0" role="button" aria-label="${s.key}">
         <circle class="glow" cx="${s.x}" cy="${s.y}" r="${r * 2.4}" style="animation-delay:${i * .4}s"/>
-        <image href="assets/brush/${i % 2 ? "star-tiny" : "star-small"}.png" x="${s.x - r * 1.5}" y="${s.y - r * 2}" width="${r * 3}" height="${r * 4}"/>
+        <path d="M${s.x} ${s.y - r * 1.6} Q${s.x} ${s.y} ${s.x + r * 1.6} ${s.y} Q${s.x} ${s.y} ${s.x} ${s.y + r * 1.6} Q${s.x} ${s.y} ${s.x - r * 1.6} ${s.y} Q${s.x} ${s.y} ${s.x} ${s.y - r * 1.6}Z"/>
         <circle cx="${s.x}" cy="${s.y}" r="${r * 3}" fill="transparent"/>
         <text x="${s.x + (right ? 20 : -20)}" y="${s.y + 4}" text-anchor="${right ? "start" : "end"}">${s.key}</text>
         <text class="n" x="${s.x + (right ? 20 : -20)}" y="${s.y + 17}" text-anchor="${right ? "start" : "end"}">${String(n).padStart(2, "0")} ✦</text>
@@ -352,23 +364,17 @@
   /* ---------- scroll choreography ---------- */
   function choreography() {
     if (!hasGsap || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    gsap.to(".hero__photo", { yPercent: 12, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
-    gsap.to(".hero__mark", { yPercent: -30, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
-    const board = { trigger: ".poster__board", start: "top bottom", end: "bottom top", scrub: true };
-    gsap.fromTo(".cut--a", { yPercent: 18 }, { yPercent: -14, ease: "none", scrollTrigger: board });
-    gsap.fromTo(".cut--b", { yPercent: 30 }, { yPercent: -24, ease: "none", scrollTrigger: board });
-    gsap.fromTo(".poster__spark1, .poster__spark2", { rotate: -30 }, { rotate: 40, ease: "none", scrollTrigger: board });
-    gsap.from(".poster__title", { y: 60, opacity: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: ".poster", start: "top 75%" } });
-    gsap.from(".poster__note", { scale: .4, rotate: -20, opacity: 0, duration: .9, ease: "back.out(2)", scrollTrigger: { trigger: ".poster__note", start: "top 92%" } });
+    gsap.to(".arch--a", { yPercent: -10, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+    gsap.to(".arch--b", { yPercent: -28, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+    gsap.to(".hero__word", { yPercent: 30, letterSpacing: "0.04em", ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
     $$(".display, .lede, .eva__big, .eva__sign").forEach(el =>
       gsap.from(el, { y: 40, opacity: 0, duration: 1.1, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 88%" } }));
     gsap.from(".ooak-card", { x: 120, opacity: 0, duration: 1.2, stagger: .08, ease: "expo.out", scrollTrigger: { trigger: "#ooakRail", start: "top 85%" } });
     gsap.from(".sky-star", { scale: 0, opacity: 0, transformOrigin: "center", duration: 1, stagger: .09, ease: "back.out(2)", scrollTrigger: { trigger: "#skyMap", start: "top 80%" } });
     gsap.from(".sky-line", { opacity: 0, duration: 1.4, stagger: .06, delay: .4, scrollTrigger: { trigger: "#skyMap", start: "top 80%" } });
     gsap.from(".fibre", { y: 60, rotate: i => [-3, 2, -2][i], opacity: 0, duration: 1, stagger: .12, ease: "expo.out", scrollTrigger: { trigger: ".fibres__list", start: "top 85%" } });
-    gsap.from(".eva__photo", { y: 80, rotate: 6, opacity: 0, duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: ".eva", start: "top 75%" } });
-    gsap.from(".eva__star, .eva__star2", { scale: 0, rotate: -60, duration: 1, stagger: .15, ease: "back.out(2)", scrollTrigger: { trigger: ".eva", start: "top 70%" } });
-    gsap.from(".letters__moon", { rotate: 60, scale: 1.8, opacity: 0, duration: 1, ease: "back.out(2)", scrollTrigger: { trigger: ".letters", start: "top 75%" } });
+    gsap.from(".eva__img", { clipPath: "inset(100% 0 0 0)", duration: 1.6, ease: "expo.inOut", scrollTrigger: { trigger: ".eva", start: "top 75%" } });
+    gsap.from(".letters__stamp", { rotate: 60, scale: 1.8, opacity: 0, duration: 1, ease: "back.out(2)", scrollTrigger: { trigger: ".letters", start: "top 75%" } });
     gsap.from(".foot__word", { yPercent: 60, duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: ".foot", start: "top 90%" } });
     ScrollTrigger.batch(".card", { start: "top 92%", once: true, onEnter: els => gsap.from(els, { y: 50, opacity: 0, duration: .9, stagger: .07, ease: "expo.out" }) });
   }
