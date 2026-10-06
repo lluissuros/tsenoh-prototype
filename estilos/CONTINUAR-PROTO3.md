@@ -1,6 +1,13 @@
-# Continuar con Proto 3 — cierre de sesión, 2026-10-01
+# Continuar con Proto 3 — actualizado 2026-10-06
 
 Este documento resume lo acordado con Eva y Luis. Leerlo junto con AGENTS.md y estilos/LOG.md. Las decisiones más recientes sustituyen preferencias anteriores contradictorias.
+
+## Actualización 2026-10-06
+
+Los originales ya son accesibles: `/Users/lluissuros/Downloads/WEB TSENOH GPT`.
+Copias intactas en `assets/eva/`: `moon-full.png`, `marble-lilac.jpg`, `marble-pink.jpg` (marble3) y `colours-web-2020.jpg`.
+Aplicados en esta sesión: luna real con fase y halo, marmolado lila en `.poster__marble`, rosa en `.nav`, y rosas de la paleta de 2020. Esta actualización sustituye las limitaciones de acceso descritas abajo.
+Siguen pendientes el marmolado lila de `.fibres` y la franja rosa bajo `.ribbon`. Eva ha reservado para más adelante otro recurso; `Bajo de web Tsenoh.png` y `FILTERS` todavía no se utilizan.
 
 ## Proyecto y versiones
 

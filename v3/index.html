@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#fbd0d7">
+<meta name="theme-color" content="#fdd3e2">
 <title>Tsenoh! — Proto 3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
 <link rel="preload" href="../fonts/d-din-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/ovejas-1200.jpg" as="image" imagesrcset="../assets/ovejas-1200.jpg 1200w, ../assets/ovejas-2400.jpg 2400w" imagesizes="100vw">
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=3-20261001-b">
+<link rel="stylesheet" href="styles.css?v=3-20261006">
 </head>
 <body>
 
@@ -70,7 +70,19 @@
 
   <!-- MOON -->
   <section class="moon" id="moon">
-    <button class="moon__disc" id="moonDisc" aria-label="Moon"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" class="moon__base"/><path id="moonLit" class="moon__lit"/></svg></button>
+    <button class="moon__disc" id="moonDisc" aria-label="Moon">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <clipPath id="moonOutline"><circle cx="50" cy="50" r="46"/></clipPath>
+          <clipPath id="moonLight"><path id="moonLit"/></clipPath>
+        </defs>
+        <circle cx="50" cy="50" r="46" class="moon__base"/>
+        <g clip-path="url(#moonOutline)">
+          <image href="../assets/eva/moon-full.png" x="-.6" y="-.3" width="101.2" height="100.9" class="moon__photo moon__photo--shadow"/>
+          <image href="../assets/eva/moon-full.png" x="-.6" y="-.3" width="101.2" height="100.9" class="moon__photo" clip-path="url(#moonLight)"/>
+        </g>
+      </svg>
+    </button>
     <div>
       <p class="eyebrow" data-i18n="moonEyebrow"></p>
       <p class="moon__phase" id="moonPhase"></p>
@@ -221,6 +233,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="../data.js?v=3-20261001-b"></script>
 <script src="copy.js?v=3-20261001-b"></script>
-<script src="app.js?v=3-20261001-b"></script>
+<script src="app.js?v=3-20261006"></script>
 </body>
 </html>

@@ -71,6 +71,7 @@
     const m = moonState();
     $("#moonLit").setAttribute("d", moonPath(m.phase));
     $("#moonPhase").textContent = `${t("moonNames")[m.index]} · ${Math.round(m.lit * 100)}% ${t("lit")}`;
+    $("#moonDisc").setAttribute("aria-label", `${t("moonEyebrow")}: ${$("#moonPhase").textContent}`);
     $("#moonLine").textContent = t("moonLines")[m.index];
     $("#ringText").textContent = `${t("moonEyebrow")} ✦ ${t("moonNames")[m.index]} ${Math.round(m.lit * 100)}% ✦ Cruïlles · Baix Empordà ✦ `;
   }

@@ -5,6 +5,16 @@ Al empezar una sesión nueva sobre la web, lee este archivo y `README.md` primer
 
 ---
 
+## 2026-10-06 — Originales de Eva en Proto 3
+
+- Se localizan los archivos de WEB TSENOH GPT en Downloads y se copian sin modificar a assets/eva/: luna llena, MARBLE lilac, marble3 y paleta de colores de 2020. Son los originales de Eva; los recursos compartidos de Proto 1 y Proto 2 se conservan.
+- Eva pide aplicar la luna fotográfica en «Esta noche sobre el taller», conservando halo y oscurecimiento según fase. El disco se recorta mediante SVG y se muestra la misma foto en la zona iluminada y, tenue, en la sombra. Se mantiene el cálculo lunar aproximado existente.
+- MARBLE lilac pasa al recuadro de fondo del bloque de tejidos (.poster__marble); marble3 pasa a la barra del logo y menú (.nav).
+- La paleta de 2020 guía los rosas: claro RGB 253/211/226, suave 247/174/184 y frambuesa 233/69/112. Se conserva el rosa intenso 239/96/163, el morado aprobado y las secciones negras.
+- Validación con Chrome: fase y etiqueta accesible, cambio ES/EN, añadir/quitar bolsa, fondos originales y ausencia de desbordamiento horizontal a 390 y 1440 px. Revisión visual de luna/halo en móvil y cabecera/bloque de tejidos en escritorio; controles comprobados con animaciones desactivadas.
+- No se utiliza aún Bajo de web Tsenoh ni FILTERS. Siguen pendientes el marmolado en fibras y en la franja bajo la cinta de la petición anterior.
+
+
 ## 2026-10-01 — Cierre de sesión y relevo
 
 - Eva pide guardar toda la información para continuar mañana sobre Proto 3. Se crea estilos/CONTINUAR-PROTO3.md con versiones/enlaces, decisiones vigentes, assets existentes, descripción de adjuntos no disponibles, cambios aplicados, tres cambios pendientes y validación realizada.

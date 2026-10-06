@@ -7,7 +7,7 @@ Esta carpeta guarda el estilo de la marca: las referencias de Eva y el registro 
 
 ## Estado actual y próxima sesión
 
-Leer [CONTINUAR-PROTO3.md](CONTINUAR-PROTO3.md) antes de trabajar: contiene las decisiones vigentes, tres versiones y cambios pendientes. Las referencias de abajo son históricas; naranja, azul marino y Permanent Marker ya están descartados. Los marmolados originales y la luna real compartidos en el chat todavía NO son archivos en este repositorio.
+Leer [CONTINUAR-PROTO3.md](CONTINUAR-PROTO3.md) antes de trabajar: contiene las decisiones vigentes, tres versiones y cambios pendientes. Las referencias de abajo son históricas; naranja, azul marino y Permanent Marker ya están descartados. Los marmolados originales, la luna real y la paleta de 2020 ya están en `assets/eva/` desde el 2026-10-06; consultar el relevo para los usos aplicados y pendientes.
 
 ## Cómo añadir material (para Eva)
 
